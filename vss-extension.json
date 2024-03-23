@@ -1,0 +1,64 @@
+{
+    "manifestVersion": 1,
+    "id": "bcartifacturl-proxy",
+    "publisher": "arthurvdv",
+    "name": "bcartifacturl-proxy",
+    "version": "1.0.0",
+    "description": "Get artifact URLs for Microsoft Dynamics 365 Business Central trough trough bcartifacturl-proxy.",
+    "tags": [
+        "AL",
+        "BC",
+        "Business Central",
+        "Dynamics 365"
+    ],
+    "icons": {
+        "default": "images/extension-icon.png"
+    },
+    "public": true,
+    "galleryFlags": [
+        "Preview"
+    ],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "scopes": [],
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "links": {
+        "repository": {
+            "uri": "https://github.com/Arthurvdv/bcartifacturl-proxy-vss"
+        },
+        "issues": {
+            "uri": "https://github.com/Arthurvdv/bcartifacturl-proxy-vss/issues"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/Arthurvdv/bcartifacturl-proxy-vss"
+    },
+    "files": [
+        {
+            "path": "bcartifacturlproxy"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "bcartifacturl-proxy",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "bcartifacturlproxy"
+            }
+        }
+    ]
+}

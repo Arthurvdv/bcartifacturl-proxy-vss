@@ -1,0 +1,106 @@
+{
+  "id": "362068b0-e916-11ee-8fb3-5ba228a35c04",
+  "name": "bcartifacturlproxy",
+  "friendlyName": "bcartifacturl-proxy",
+  "description": "Proxy for artifact URLs read by BcContainerHelper.",
+  "author": "Arthur van de Vondervoort",
+  "helpMarkDown": "Replace with markdown to show in help",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "1",
+    "Minor": "0",
+    "Patch": "0"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "bcartifacturl-proxy $(message)",
+  "inputs": [
+    {
+      "name": "baseUri",
+      "type": "String",
+      "label": "BaseUri",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Provide an BaseUrl in case your running your own instance of a bcartifacturl-proxy"
+    },
+    {
+      "name": "type",
+      "type": "pickList",
+      "label": "Type",
+      "required": false,
+      "helpMarkDown": "OnPrem or Sandbox (default is Sandbox)",
+      "defaultValue": "Sandbox",
+      "options": {
+        "OnPrem": "OnPrem",
+        "Sandbox": "Sandbox"
+      }
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "label": "Country",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The requested localization of Business Central (default is xx)"
+    },
+    {
+      "name": "version",
+      "type": "string",
+      "label": "Version",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The version of Business Central (will search for entries where the version starts with this value of the parameter)"
+    },
+    {
+      "name": "select",
+      "type": "pickList",
+      "label": "Select",
+      "required": false,
+      "helpMarkDown": "All or only the latest (Default Latest):",
+      "defaultValue": "Latest",
+      "options": {
+        "Latest": "Latest",
+        "Daily": "Daily",
+        "Weekly": "Weekly",
+        "Closest": "Closest",
+        "SecondToLastMajor": "SecondToLastMajor",
+        "Current": "Current",
+        "NextMajor": "NextMajor",
+        "NextMinor": "NextMinor"
+      }
+    },
+    {
+      "name": "storageAccount",
+      "type": "string",
+      "label": "storageAccount",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The storageAccount that is being used where artifacts are stored (default is bcartifacts, usually should not be changed)."
+    },
+    {
+      "name": "sasToken",
+      "type": "string",
+      "label": "sasToken",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The token that for accessing protected Azure Blob Storage. Make sure to set the right storageAccount! Note that Business Central Insider artifacts doesn't require a sasToken after October 1st 2023, you can use the switch -accept_insiderEula to accept the EULA instead."
+    },
+    {
+      "name": "accept_insiderEula",
+      "type": "boolean",
+      "label": "accept_insiderEula",
+      "defaultValue": "false",
+      "required": false,
+      "helpMarkDown": "Accept the EULA for Business Central Insider artifacts. This is required for using Business Central Insider artifacts without providing a SAS token after October 1st 2023."
+    }
+  ],
+  "execution": {
+    "PowerShell3": {
+      "target": "bcartifacturlproxy.ps1"
+    }
+  }
+}
