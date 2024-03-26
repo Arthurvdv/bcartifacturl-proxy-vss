@@ -7,7 +7,7 @@ Trace-VstsEnteringInvocation $MyInvocation
 
 try {
     # Get the input parameters
-    $baseUri = Get-VstsInput -Name baseUri
+    $instanceUri = Get-VstsInput -Name instanceUri
     $type = Get-VstsInput -Name type
     $country = Get-VstsInput -Name country
     $version = Get-VstsInput -Name version
@@ -20,7 +20,7 @@ try {
     Write-Host ""
     Write-Host -NoNewLine "name                           "; Write-Host "value"
     Write-Host -NoNewLine "-----                          "; Write-Host "-----"
-    Write-Host -NoNewLine "baseUri                        "; Write-Host $baseUri
+    Write-Host -NoNewLine "instanceUri                    "; Write-Host $instanceUri
     Write-Host -NoNewLine "type                           "; Write-Host $type
     Write-Host -NoNewLine "country                        "; Write-Host $country
     Write-Host -NoNewLine "version                        "; Write-Host $version
@@ -32,7 +32,7 @@ try {
     Write-Host ""
     
     $param = $null
-    if ($baseUri) { $param += " -baseUri $($baseUri.ToLower()) " }
+    if ($instanceUri) { $param += " -instanceUri $($instanceUri.ToLower()) " }
     if ($type) { $param += " -type $($type.ToLower())" }
     if ($country) { $param += " -country $($country.ToLower())" }
     if ($version) { $param += " -version $version" }

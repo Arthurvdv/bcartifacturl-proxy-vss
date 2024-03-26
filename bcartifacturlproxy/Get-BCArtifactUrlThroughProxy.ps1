@@ -2,7 +2,7 @@ function Get-BCArtifactUrlThroughProxy {
     [OutputType([string])]
     [CmdletBinding()]
     param (
-        [String] $baseUri = 'https://bca-url-proxy.azurewebsites.net/bca-url',
+        [String] $instanceUri = 'https://bca-url-proxy.azurewebsites.net/bca-url',
         [ValidateSet('OnPrem', 'Sandbox')]
         [String] $type = '',
         [String] $country = '',
@@ -22,7 +22,7 @@ function Get-BCArtifactUrlThroughProxy {
         if ([String]::IsNullOrEmpty($country)) { $type = 'W1' }
     }
 
-    $bcartifacturlproxy = $baseUri
+    $bcartifacturlproxy = $instanceUri
     $bcartifacturlproxy += "/$type"
     $bcartifacturlproxy += "/$country"
     if ($version) { $bcartifacturlproxy += "/$version" }

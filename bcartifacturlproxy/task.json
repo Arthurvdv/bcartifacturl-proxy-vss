@@ -2,9 +2,9 @@
   "id": "362068b0-e916-11ee-8fb3-5ba228a35c04",
   "name": "bcartifacturlproxy",
   "friendlyName": "bcartifacturl-proxy",
-  "description": "Proxy for artifact URLs read by BcContainerHelper.",
+  "description": "Get artifact URLs for Microsoft Dynamics 365 Business Central",
   "author": "Arthur van de Vondervoort",
-  "helpMarkDown": "Replace with markdown to show in help",
+  "helpMarkDown": "https://marketplace.visualstudio.com/items?itemName=Arthurvdv.bcartifacturl-proxy",
   "category": "Utility",
   "visibility": [
     "Build",
@@ -14,18 +14,18 @@
   "version": {
     "Major": "1",
     "Minor": "0",
-    "Patch": "0"
+    "Patch": "1"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "bcartifacturl-proxy $(message)",
   "inputs": [
     {
-      "name": "baseUri",
+      "name": "instanceUri",
       "type": "String",
-      "label": "BaseUri",
+      "label": "Instance Url",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "Provide an BaseUrl in case your running your own instance of a bcartifacturl-proxy"
+      "helpMarkDown": "Provide an Url in case your running your own instance of a bcartifacturl-proxy"
     },
     {
       "name": "type",
@@ -76,7 +76,7 @@
     {
       "name": "storageAccount",
       "type": "string",
-      "label": "storageAccount",
+      "label": "Storage Account",
       "defaultValue": "",
       "required": false,
       "helpMarkDown": "The storageAccount that is being used where artifacts are stored (default is bcartifacts, usually should not be changed)."
@@ -84,7 +84,7 @@
     {
       "name": "sasToken",
       "type": "string",
-      "label": "sasToken",
+      "label": "SAS-token",
       "defaultValue": "",
       "required": false,
       "helpMarkDown": "The token that for accessing protected Azure Blob Storage. Make sure to set the right storageAccount! Note that Business Central Insider artifacts doesn't require a sasToken after October 1st 2023, you can use the switch -accept_insiderEula to accept the EULA instead."
