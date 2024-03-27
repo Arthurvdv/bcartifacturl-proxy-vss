@@ -19,14 +19,14 @@ Read more on this on [Get your BC artifact URLs without PowerShell](https://tobi
     select: 'Daily'
 ```
 
-The task will set the pipeline variable $(BCARTIFACTURL_PROXY) with the result retrieved from [bcartifacturl-proxy](https://github.com/tfenster/bcartifacturl-proxy) instance.
+The task will set the pipeline variable $(BCARTIFACTURL_PROXY) with the result retrieved from the [bcartifacturl-proxy](https://github.com/tfenster/bcartifacturl-proxy) instance.
 
 ```
 Starting: Get-BCArtifactUrl
 ==============================================================================
 Task         : bcartifacturl-proxy
 Description  : Proxy for artifact URLs read by BcContainerHelper.
-Version      : 1.0.0
+Version      : 1.0.9
 Author       : Arthur van de Vondervoort
 Help         : https://marketplace.visualstudio.com/items?itemName=Arthurvdv.bcartifacturl-proxy
 ==============================================================================
@@ -44,8 +44,8 @@ sasToken
 accept_insiderEula             false
 
 
-*** Execute bcartifacturl-proxy
 Invoke-WebRequest https://bca-url-proxy.azurewebsites.net/bca-url/sandbox/w1?DoNotRedirect=true&select=daily -UseBasicParsing
+Response OK
 *** Set Pipeline variable $(BCARTIFACTURL_PROXY) = 'https://bcartifacts.azureedge.net/sandbox/23.5.16502.17828/w1'
 Finishing: Get-BCArtifactUrl
 ```

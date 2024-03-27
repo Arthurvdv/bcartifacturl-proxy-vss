@@ -35,6 +35,13 @@ function Get-BCArtifactUrlThroughProxy {
     try {
         Write-Host "##[command]Invoke-WebRequest $($bcartifacturlproxy) -UseBasicParsing"
         $artifactUrl = Invoke-WebRequest $bcartifacturlproxy -UseBasicParsing
+
+        Write-Host "##[group]Response $($artifactUrl.StatusDescription)"
+        Write-Host -NoNewLine "HTTP:    " ; Write-Host $($artifactUrl.StatusCode)
+        Write-Host -NoNewLine "Cached:  " ; Write-Host $($artifactUrl.Headers.'X-bcaup-from-cache')
+        Write-Host -NoNewLine "Command: " ; Write-Host $($artifactUrl.Headers.'X-bccontainerhelper-command')
+        Write-Host "##[endgroup]"
+
         return $artifactUrl.Content.Trim()
     }
     catch { 
