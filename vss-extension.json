@@ -3,7 +3,7 @@
     "id": "bcartifacturl-proxy",
     "publisher": "arthurvdv",
     "name": "bcartifacturl-proxy",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "description": "Get artifact URLs for Microsoft Dynamics 365 Business Central",
     "tags": [
         "AL",

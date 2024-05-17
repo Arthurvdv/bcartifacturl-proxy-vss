@@ -15,6 +15,7 @@ try {
     $storageAccount = Get-VstsInput -Name storageAccount
     $sasToken = Get-VstsInput -Name sasToken
     $accept_insiderEula = Get-VstsInput -Name accept_insiderEula
+    $cacheExpiration = Get-VstsInput -Name cacheExpiration
 
     Write-Host "*** Task Inputs:"
     Write-Host ""
@@ -28,6 +29,7 @@ try {
     Write-Host -NoNewLine "storageAccount                 "; Write-Host $storageAccount
     Write-Host -NoNewLine "sasToken                       "; Write-Host $sasToken
     Write-Host -NoNewLine "accept_insiderEula             "; Write-Host $accept_insiderEula
+    Write-Host -NoNewLine "cacheExpiration                "; Write-Host $cacheExpiration
     Write-Host ""
     Write-Host ""
 
@@ -62,6 +64,7 @@ try {
     if ($storageAccount) { $param += " -storageAccount $storageAccount" }
     if ($sasToken) { $param += " -sasToken $sasToken" }
     if ($accept_insiderEula.ToLower() -eq "true") { $param += " -accept_insiderEula" }
+    if ($cacheExpiration) { $param += " -cacheExpiration $cacheExpiration" }
 
     Import-Module .\Get-BCArtifactUrlThroughProxy.ps1 | Out-Null
     $command = "Get-BCArtifactUrlThroughProxy" + $param

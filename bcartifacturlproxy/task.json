@@ -13,8 +13,8 @@
   "demands": [],
   "version": {
     "Major": "1",
-    "Minor": "0",
-    "Patch": "9"
+    "Minor": "1",
+    "Patch": "0"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "bcartifacturl-proxy $(message)",
@@ -96,6 +96,13 @@
       "defaultValue": "false",
       "required": false,
       "helpMarkDown": "Accept the EULA for Business Central Insider artifacts. This is required for using Business Central Insider artifacts without providing a SAS token after October 1st 2023."
+    },
+    {
+      "name": "cacheExpiration",
+      "type": "string",
+      "label": "cacheExpiration",
+      "required": false,
+      "helpMarkDown": "By default, only cache entries that are less than 1 hour old are returned. To extend this duration set the amount of seconds an cache entry is valid for."
     }
   ],
   "execution": {

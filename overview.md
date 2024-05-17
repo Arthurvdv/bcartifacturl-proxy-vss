@@ -26,7 +26,7 @@ Starting: Get-BCArtifactUrl
 ==============================================================================
 Task         : bcartifacturl-proxy
 Description  : Proxy for artifact URLs read by BcContainerHelper.
-Version      : 1.0.9
+Version      : 1.1.0
 Author       : Arthur van de Vondervoort
 Help         : https://marketplace.visualstudio.com/items?itemName=Arthurvdv.bcartifacturl-proxy
 ==============================================================================
@@ -42,6 +42,7 @@ select                         Daily
 storageAccount                 
 sasToken                       
 accept_insiderEula             false
+cacheExpiration                
 
 
 Invoke-WebRequest https://bca-url-proxy.azurewebsites.net/bca-url/sandbox/w1?DoNotRedirect=true&select=daily -UseBasicParsing
@@ -90,3 +91,18 @@ Currently only agents running on Windows are supported.
 
 ### What will happen if the WebRequest fails?
 In case the call to the instanceUri fails, the task will fallback to the `Get-BCArtifactUrl` method from the [BcContainerHelper](https://www.powershellgallery.com/packages/BcContainerHelper).
+
+### Adjusting input accept_insiderEula from 'true' to 'false'
+In specific scenarios, the input parameter value accept_insiderEula will be adjusted from 'true' to 'false' to increase the likelihood of retrieving a cached result.
+
+```PS
+Invoke-WebRequest https://bca-url-proxy.azurewebsites.net/bca-url/sandbox/w1?select=latest&DoNotRedirect=true
+Invoke-WebRequest https://bca-url-proxy.azurewebsites.net/bca-url/sandbox/w1?select=latest&DoNotRedirect=true&accept_insiderEula
+```
+
+Both requests are valid and will return the same artifact URL. However, the second request cannot benefit from the cache of the first request.  
+Conversely, automatic adjustment from 'false' to 'true' will not occur, as the insider EULA must always be explicitly accepted.
+
+### Increase Cache Expiration
+By default, only cache entries that are less than 1 hour old are returned. To extend this duration, set the cacheExpiration parameter.
+For retrieving cached entries up to 24 hours old, set the value to 86400.
