@@ -56,7 +56,6 @@ try {
     }
 
     $param = $null
-    if ($instanceUri) { $param += " -instanceUri $($instanceUri.ToLower()) " }
     if ($type) { $param += " -type $($type.ToLower())" }
     if ($country) { $param += " -country $($country.ToLower())" }
     if ($version) { $param += " -version $version" }
@@ -64,10 +63,14 @@ try {
     if ($storageAccount) { $param += " -storageAccount $storageAccount" }
     if ($sasToken) { $param += " -sasToken $sasToken" }
     if ($accept_insiderEula.ToLower() -eq "true") { $param += " -accept_insiderEula" }
-    if ($cacheExpiration) { $param += " -cacheExpiration $cacheExpiration" }
+
+    # Copy the base param for the proxy command
+    $paramProxy = $param
+    if ($instanceUri) { $paramProxy += " -instanceUri $($instanceUri.ToLower()) " }
+    if ($cacheExpiration) { $paramProxy += " -cacheExpiration $cacheExpiration" }
 
     Import-Module .\Get-BCArtifactUrlThroughProxy.ps1 | Out-Null
-    $command = "Get-BCArtifactUrlThroughProxy" + $param
+    $command = "Get-BCArtifactUrlThroughProxy" + $paramProxy
     $bcartifacturl = Invoke-Expression $command
 
     if ([string]::IsNullOrEmpty($bcartifacturl)) {
